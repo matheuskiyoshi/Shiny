@@ -18,8 +18,8 @@ root.render(
         <Route path='/' element={<Home />} />
         <Route path='/survey/:questionNumber' element={<Survey />} />
         <Route path='' element={<Error />} />
-        <Route path='/results/' element={<Results />} />
-        <Route path='/freelancers/' element={<Freelancers/>} /> 
+        <Route path='/results' element={<Results />} />
+        <Route path='/freelancers' element={<Freelancers/>} /> 
       </Routes>
     </Router>
   </React.StrictMode>
