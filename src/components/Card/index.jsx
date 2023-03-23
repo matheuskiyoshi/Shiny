@@ -4,10 +4,11 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 
 const CardLabel = styled.span`
-    color: #5843e4;
+    color: ${colors.primary};
     font-size: 22px;
     font-weight: normal;
     padding-left: 15px;
+    align-self: center;
  `
  const CardTitle = styled.span`
     color: black;
@@ -16,7 +17,7 @@ const CardLabel = styled.span`
     align-self: center;
  `
 const CardImage = styled.img`
-    height: 1500px;
+    height: 150px;
     width: 150px;
     border-radius: 50%;
     align-self: center;
