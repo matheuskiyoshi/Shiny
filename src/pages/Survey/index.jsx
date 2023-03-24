@@ -94,6 +94,7 @@ return (
       ) : (
         <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
       )}
+      {answers && (
       <ReplyWrapper>
         <ReplyBox 
           onClick={() => saveReply(true)}
@@ -108,6 +109,7 @@ return (
           No
         </ReplyBox>
       </ReplyWrapper>
+      )}
       <LinkWrapper>
         <Link to={`/survey/${prevQuestionNumber}`}>Back</Link>
         {surveyData[questionNumberInt + 1] ? (
