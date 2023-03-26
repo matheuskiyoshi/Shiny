@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import DefaultPicture from '../../assets/profile.png'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import { useTheme } from '../../utils/hooks'
 
 const CardLabel = styled.span`
     color: ${colors.primary};
@@ -38,13 +39,13 @@ const CardWrapper = styled.div`
     }
 `
 
-
 function Card({ label, picture, title }) {
+    const { theme } = useTheme()
     return(
-        <CardWrapper>
-            <CardLabel>{label}</CardLabel>
+        <CardWrapper theme={theme}>
+            <CardLabel theme={theme}>{label}</CardLabel>
             <CardImage src={picture} alt='freelancer' />
-            <CardTitle>{title}</CardTitle>
+            <CardTitle theme={theme}>{title}</CardTitle>
         </CardWrapper>
     )
 }

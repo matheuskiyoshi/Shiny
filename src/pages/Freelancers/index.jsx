@@ -1,7 +1,7 @@
 import Card from "../../components/Card"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
-import { useState, useEffect } from "react"
+import { useFetch, useTheme } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 
 const CardsContainer = styled.div`
@@ -30,40 +30,25 @@ const LoaderWrapper = styled.div`
 `
 
 function Freelancers() {
-   const [isDataLoading, setDataLoading] = useState(false)
-   const [error, setError] = useState(false)
-   const [freelancersList, setFreelancersList] = useState([])
+   const { theme } = useTheme()
+   const { data, isLoading, error } = useFetch(
+      `http://localhost:8000/freelances`
+   )
+   const freelancersList = data?.freelancersList
 
-   useEffect(() => {
-      async function fetchFreelancers() {
-         setDataLoading(true)
-         try { 
-            const response = await fetch(`http://localhost:8000/freelances`)
-            const { freelancersList } = await response.json()
-            setFreelancersList(freelancersList)
-         } catch (err) {
-            console.log('Error', err)
-            setError(true)
-         } finally {
-            setDataLoading(false)
-         }
-      }
-      fetchFreelancers()
-   }, [])
-   
    if (error) {
       return <span>Oops! There is an error</span>
    }
     
     return (
        <div>
-          <PageTitle>Find your service provider</PageTitle>
-          <PageSubtitle>
+          <PageTitle theme={theme}>Find your service provider</PageTitle>
+          <PageSubtitle theme={theme}>
             Here at Shiny we bring together the best profiles for you.
           </PageSubtitle>
-          {isDataLoading ? (
+          {isLoading ? (
             <LoaderWrapper>
-               <Loader />
+               <Loader theme={theme} />
             </LoaderWrapper>
           ) : (
           <CardsContainer>

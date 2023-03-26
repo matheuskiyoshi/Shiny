@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
 import { SurveyContext } from '../../utils/context'
-import { useFetch } from '../../utils/hooks'
+import { useFetch, useTheme } from '../../utils/hooks'
 
 const SurveyContainer = styled.div`
     display: flex;
@@ -57,6 +57,7 @@ function Survey() {
     const questionNumberInt = parseInt(questionNumber)
     const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
     const nextQuestionNumber = questionNumberInt + 1
+    const { theme } = useTheme()
 
     const { saveAnswers, answers } = useContext(SurveyContext)
 
@@ -73,11 +74,11 @@ function Survey() {
 
 return (
     <SurveyContainer>
-      <QuestionTitle>Question {questionNumber}</QuestionTitle>
+      <QuestionTitle theme={theme}>Question {questionNumber}</QuestionTitle>
       {isLoading ? (
         <Loader />
       ) : (
-        <QuestionContent>
+        <QuestionContent theme={theme}>
           {surveyData && surveyData[questionNumber]}
         </QuestionContent>
       )}
@@ -85,17 +86,19 @@ return (
         <ReplyBox 
           onClick={() => saveReply(true)}
           isSelected = {answers[questionNumber] === true} 
+          theme={theme}
         >
           Yes
         </ReplyBox>
         <ReplyBox 
           onClick={() => saveReply(false)}
           isSelected = {answers[questionNumber] === false} 
+          theme={theme}
         >
           No
         </ReplyBox>
       </ReplyWrapper>
-      <LinkWrapper>
+      <LinkWrapper theme={theme}>
         <Link to={`/survey/${prevQuestionNumber}`}>Back</Link>
         { surveyData && surveyData[questionNumberInt + 1] ? (
           <Link to={`/survey/${nextQuestionNumber}`}>Next</Link>
