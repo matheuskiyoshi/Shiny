@@ -3,6 +3,7 @@ import DefaultPicture from '../../assets/profile.png'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { useTheme } from '../../utils/hooks'
+import { useState } from 'react'
 
 const CardLabel = styled.span`
     color: ${colors.primary};
@@ -41,11 +42,14 @@ const CardWrapper = styled.div`
 
 function Card({ label, picture, title }) {
     const { theme } = useTheme()
+    const [isFavorite, setIsFavorite] = useState(false)
+    const star = isFavorite ? '⭐️' : ''
+
     return(
-        <CardWrapper theme={theme}>
+        <CardWrapper theme={theme} onClick={() => setIsFavorite(!isFavorite)}>
             <CardLabel theme={theme}>{label}</CardLabel>
             <CardImage src={picture} alt='freelancer' />
-            <CardTitle theme={theme}>{title}</CardTitle>
+            <CardTitle theme={theme}>{star} {title} {star}</CardTitle>
         </CardWrapper>
     )
 }
