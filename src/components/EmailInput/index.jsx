@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Component } from "react";
+import { useState } from "react";
 import colors from "../../utils/style/colors";
 
 const InputWrapper = styled.div`
@@ -19,33 +19,19 @@ const StyledInput = styled.input`
     margin-top: 5px;
     margin-bottom: 15px;
 `
+function EmailInput({theme}){
+    const [inputValue, setInputValue] = useState('') 
 
-class EmailInput extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            inputValue: '',
-        }
-    }
-
-    updateInputValue(value){
-        this.setState({ inputValue: value })
-    }
-
-    render(){
-        const { theme } = this.props
-
-        return(
-            <InputWrapper theme={theme}>
-                <StyledLabel>Email Adress</StyledLabel>
-                <StyledInput 
-                    theme={theme}
-                    onChange={(e) => this.updateInputValue(e.target.value)}
-                />
-                {this.state.inputValue}
-            </InputWrapper>
-        )
-    }
+    return(
+        <InputWrapper theme={theme}>
+        <StyledLabel>Email Adress</StyledLabel>
+        <StyledInput 
+            theme={theme}
+            onChange={(e) => setInputValue(e.target.value)}
+        />
+        {inputValue}
+    </InputWrapper>
+    )
 }
 
 export default EmailInput

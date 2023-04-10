@@ -1,4 +1,3 @@
-import { Component } from "react";
 import styled from "styled-components";
 import colors from "../../utils/style/colors";
 import EmptyIllustration from '../../assets/empty.svg'
@@ -23,19 +22,16 @@ const Illustration = styled.img`
     margin: 30px 0;
 `
 
-class EmptyList extends Component {
-    render() {
-        const { theme } = this.props
-        return(
-            <Container theme={theme}>
-                <Title theme={theme}>Damage...</Title>
-                <Illustration src={EmptyIllustration} />
-                <Subtitle theme={theme}>
-                    It looks like you don't need any skills
-                </Subtitle>
-            </Container>
-        )
-    }
+function EmptyList({ theme }) {
+    return(
+    <Container theme={theme}>
+        <Title theme={theme}>Too bad...</Title>
+        <Illustration src={EmptyIllustration} />
+        <Subtitle theme={theme}>
+            It looks like you don't need any skills right now
+        </Subtitle>
+    </Container>
+    )
 }
 
 export default EmptyList
