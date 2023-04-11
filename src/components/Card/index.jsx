@@ -51,27 +51,20 @@ class Card extends Component {
         }
     }
 
-    setFavorite = () => {
-        this.setState({ isFavorite: !this.state.isFavorite })
-    }
-
     render() {
         const { theme, picture, label, title } = this.props
-        const { isFavorite } = this.state
-        const star = isFavorite ? '⭐' : ''
 
         return(
             <CardWrapper theme={theme} onClick={this.setFavorite}>
                 <CardLabel theme={theme}>{label}</CardLabel>
                 <CardImage src={picture} alt='freelancer' />
                 <CardTitle theme={theme}>
-                    {star} {title} {star}
+                    {title} 
                 </CardTitle>
             </CardWrapper>
         )
     }
 }
-
 
 Card.propTypes = {
     label: PropTypes.string.isRequired,
